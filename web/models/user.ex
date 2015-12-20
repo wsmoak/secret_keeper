@@ -4,11 +4,12 @@ defmodule SecretKeeper.User do
   schema "users" do
     field :email, :string
     field :password_hash, :string
+    field :password, :string, virtual: true
 
     timestamps
   end
 
-  @required_fields ~w(email password_hash)
+  @required_fields ~w(email password)
   @optional_fields ~w()
 
   @doc """
@@ -20,5 +21,7 @@ defmodule SecretKeeper.User do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_format(:email, ~r/@/)
+    |> validate_length(:password, min: 8)
   end
 end

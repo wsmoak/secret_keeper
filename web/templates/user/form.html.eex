@@ -12,9 +12,9 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :password_hash, class: "control-label" %>
-    <%= text_input f, :password_hash, class: "form-control" %>
-    <%= error_tag f, :password_hash %>
+    <%= label f, :password, class: "control-label" %>
+    <%= text_input f, :password, class: "form-control" %>
+    <%= error_tag f, :password %>
   </div>
 
   <div class="form-group">
