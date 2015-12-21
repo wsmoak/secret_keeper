@@ -1,6 +1,10 @@
 defmodule SecretKeeper.UserController do
   use SecretKeeper.Web, :controller
 
+  # designating "this module" as the handler means it must implement
+  # the unauthenticated and unauthorized methods (see below)
+  plug Guardian.Plug.EnsureAuthenticated, handler: __MODULE__
+
   alias SecretKeeper.User
 
   plug :scrub_params, "user" when action in [:create, :update]
@@ -64,4 +68,17 @@ defmodule SecretKeeper.UserController do
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: user_path(conn, :index))
   end
+
+  def unauthenticated(conn, params) do
+    conn
+    |> put_flash(:error, "Authentication required")
+    |> redirect(to: "/")
+  end
+
+  def unauthorized(conn, params) do
+    conn
+    |> put_flash(:error, "Authorization required")
+    |> redirect(to: "/")
+  end
+
 end
