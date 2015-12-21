@@ -4,6 +4,7 @@ defmodule SecretKeeper.UserController do
   # designating "this module" as the handler means it must implement
   # the unauthenticated and unauthorized methods (see below)
   plug Guardian.Plug.EnsureAuthenticated, handler: __MODULE__
+  plug Guardian.Plug.EnsurePermissions, handler: __MODULE__, default: [:admin]
 
   alias SecretKeeper.User
 
