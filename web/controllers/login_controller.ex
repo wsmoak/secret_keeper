@@ -13,7 +13,8 @@ defmodule SecretKeeper.LoginController do
     if Comeonin.Bcrypt.checkpw(login_params["password"], user.password_hash) do
       conn
       |> put_flash(:info, "Successful login.")
-      |> render("index.html")
+      |> Guardian.Plug.sign_in(user, :token, perms: %{ default: [:admin] })
+      |> redirect(to: user_path(conn, :index))
     else
       conn
       |> put_flash(:error, "Nope.")

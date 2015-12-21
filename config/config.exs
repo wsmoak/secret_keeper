@@ -35,4 +35,5 @@ config :guardian, Guardian,
   ttl: { 30, :days },
   verify_issuer: true, # optional
   secret_key: "5TDVCSTHt+X/uJNr0fV7QKJTlCVS//3Dxudqib3xrrriRF7wUgne5AyD1BT2LCKG",
-  serializer: SecretKeeper.GuardianSerializer
+  serializer: SecretKeeper.GuardianSerializer,
+  permissions: %{ default: [:admin] }
