@@ -1,0 +1,13 @@
+<p>Login Page...</p>
+
+<form action="/login" method="POST">
+
+  <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+
+  email: <input name="login[email]" type="text">
+
+  password: <input name="login[password]" type="text">
+
+  <input type="submit">
+
+</form>

@@ -24,6 +24,7 @@ defmodule SecretKeeper.Router do
     pipe_through [:browser, :browser_session] # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/login", LoginController
     resources "/users", UserController
   end
 
